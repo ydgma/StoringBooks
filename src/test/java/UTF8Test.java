@@ -30,7 +30,7 @@ public class UTF8Test {
     @Test
     public void getSpecificWordCount() {
         int expectedNumber = 0;
-        String wordToSearch = "one that doesn't exist";
+        String wordToSearch = "Project";
         int actualNumber = UTF8.getSpecificWordCount(wordToSearch);
         assertEquals(expectedNumber,actualNumber);
     }

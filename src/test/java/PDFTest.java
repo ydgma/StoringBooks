@@ -4,7 +4,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
 public class PDFTest {
-    private String FILE_PATH = "/Users/yasirudahanayake/IdeaProjects/test2/src/main/resources/lorem-ipsum.pdf";
+    private String FILE_PATH = "/Users/yasirudahanayake/IdeaProjects/test2/src/main/resources/33364.txt.utf-8.pdf";
     private PDF pdf = new PDF(FILE_PATH);
 
     @Test
@@ -23,7 +23,7 @@ public class PDFTest {
     @Test
     public void getSpecificWordCount() {
         int expectedNumber = 0;
-        String wordToSearch = "one that doesn't exist";
+        String wordToSearch = "Project";
         int actualNumber = pdf.getSpecificWordCount(wordToSearch);
         assertEquals(expectedNumber,actualNumber);
     }

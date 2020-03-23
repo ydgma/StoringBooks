@@ -8,6 +8,7 @@ import java.nio.file.Paths;
 public abstract class AbstractBook implements Book {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractBook.class);
     protected String bookAsString;
+    private static final String WHITE_SPACE_SPLITTER = "\\s+";
 
     abstract String getBookFilePath();
 
@@ -27,12 +28,12 @@ public abstract class AbstractBook implements Book {
 
     @Override
     public int getWordCount() {
-        return bookAsString.split("\\s+").length;
+        return bookAsString.split(WHITE_SPACE_SPLITTER).length;
     }
 
     @Override
     public int getSpecificWordCount(String wordToSearch) {
-        String [] arrayOfStrings = bookAsString.split("\\s+");
+        String [] arrayOfStrings = bookAsString.split(WHITE_SPACE_SPLITTER);
         int count = 0;
         for (String s: arrayOfStrings) {
             if(s.equalsIgnoreCase(wordToSearch)) {
