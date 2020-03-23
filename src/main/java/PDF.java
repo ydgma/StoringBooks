@@ -6,8 +6,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+
 
 public class PDF extends AbstractBook {
     private static final Logger LOG = LoggerFactory.getLogger(AbstractBook.class);
@@ -34,7 +33,7 @@ public class PDF extends AbstractBook {
     }
 
     @Override
-    String getBookFilePath() {
+    public String getBookFilePath() {
         return filePath;
     }
 
