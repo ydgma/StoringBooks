@@ -1,4 +1,4 @@
-package entity;
+package com.ydprojects.DAO;
 
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -10,8 +10,8 @@ import java.io.File;
 import java.io.IOException;
 
 
-public class PDF extends AbstractBook {
-    private static final Logger LOG = LoggerFactory.getLogger(AbstractBook.class);
+public class PDF extends BookType {
+    private static final Logger LOG = LoggerFactory.getLogger(BookType.class);
     private String filePath;
     private PDDocument PDFDocument;
 

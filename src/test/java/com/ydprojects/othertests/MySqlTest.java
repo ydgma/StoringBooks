@@ -1,16 +1,13 @@
-package DAO;
+package com.ydprojects.othertests;
 
+import com.ydprojects.util.HibernateUtil;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 
 public class MySqlTest {
 
@@ -20,19 +17,10 @@ public class MySqlTest {
     private static  Logger LOG = LoggerFactory.getLogger(MySqlTest.class);
 
     private void loadProperties() {
-        try (InputStream input = new FileInputStream("src/project.properties")) {
-            Properties prop = new Properties();
-            // load a properties file
-            prop.load(input);
-            // get the property value and print it out
-            USERNAME = prop.getProperty("db.user");
-            PASSWORD = prop.getProperty("db.password");
-            CONNURL = prop.getProperty("db.url");
-
-        } catch (IOException ex) {
-            System.out.println(ex);
-        }
-
+        HibernateUtil.loadProperties();
+        USERNAME = HibernateUtil.USERNAME;
+        PASSWORD = HibernateUtil.PASSWORD;
+        CONNURL = HibernateUtil.CONN_URL;
     }
 
     @Test

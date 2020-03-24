@@ -1,6 +1,6 @@
-package entity;
+package com.ydprojects.DAO;
 
-import entity.PDF;
+import com.ydprojects.DAO.PDF;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -12,14 +12,14 @@ public class PDFTest {
 
     @Test
     public void getFileContentsAsStringTest() {
-        boolean isEmpty = pdf.getFileContentAsString().isEmpty();
+        boolean isEmpty = pdf.bookContentsAsString().isEmpty();
         assertFalse(isEmpty);
     }
 
     @Test
     public void getWordCountTest() {
         int expected = 4950;
-        int actual = pdf.getWordCount();
+        int actual = pdf.wordCount();
         assertEquals(expected,actual);
     }
 
@@ -27,7 +27,7 @@ public class PDFTest {
     public void getSpecificWordCount() {
         int expectedNumber = 0;
         String wordToSearch = "word that doesn't exist";
-        int actualNumber = pdf.getSpecificWordCount(wordToSearch);
+        int actualNumber = pdf.specificWordCount(wordToSearch);
         assertEquals(expectedNumber,actualNumber);
     }
 }

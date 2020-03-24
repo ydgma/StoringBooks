@@ -1,5 +1,6 @@
-package entity;
+package com.ydprojects.DAO;
 
+import com.ydprojects.modal.Book;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -7,8 +8,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public abstract class AbstractBook implements Book {
-    private static final Logger LOG = LoggerFactory.getLogger(AbstractBook.class);
+public abstract class BookType extends BookDAO {
+    private static final Logger LOG = LoggerFactory.getLogger(BookType.class);
     protected String bookAsString;
     private static final String WHITE_SPACE_SPLITTER = "\\s+";
 
@@ -23,18 +24,15 @@ public abstract class AbstractBook implements Book {
         }
     }
 
-    @Override
-    public String getFileContentAsString() {
+    public String bookContentsAsString() {
         return bookAsString;
     }
 
-    @Override
-    public int getWordCount() {
+    public int wordCount() {
         return bookAsString.split(WHITE_SPACE_SPLITTER).length;
     }
 
-    @Override
-    public int getSpecificWordCount(String wordToSearch) {
+    public int specificWordCount(String wordToSearch) {
         String [] arrayOfStrings = bookAsString.split(WHITE_SPACE_SPLITTER);
         int count = 0;
         for (String s: arrayOfStrings) {
