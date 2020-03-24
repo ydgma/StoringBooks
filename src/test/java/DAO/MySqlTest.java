@@ -1,3 +1,5 @@
+package DAO;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +20,7 @@ public class MySqlTest {
     private static  Logger LOG = LoggerFactory.getLogger(MySqlTest.class);
 
     private void loadProperties() {
-        try (InputStream input = new FileInputStream("/Users/yasirudahanayake/IdeaProjects/test2/src/project.properties")) {
+        try (InputStream input = new FileInputStream("src/project.properties")) {
             Properties prop = new Properties();
             // load a properties file
             prop.load(input);

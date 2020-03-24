@@ -1,3 +1,5 @@
+package entity;
+
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +11,7 @@ public class UTF8Test {
     //TODO need to add mocking
     private static final Logger LOG = LoggerFactory.getLogger(UTF8Test.class);
     private static final String FILE_PATH = "src/test/resources/33364.txt.utf-8.txt";
-    private UTF8 UTF8 = new UTF8(FILE_PATH);
+    private entity.UTF8 UTF8 = new UTF8(FILE_PATH);
 
 
     @Test

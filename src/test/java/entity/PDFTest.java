@@ -1,3 +1,6 @@
+package entity;
+
+import entity.PDF;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
