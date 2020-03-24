@@ -8,7 +8,7 @@ public class UTF8Test {
 
     //TODO need to add mocking
     private static final Logger LOG = LoggerFactory.getLogger(UTF8Test.class);
-    private static final String FILE_PATH = "/Users/yasirudahanayake/IdeaProjects/test2/src/main/resources/33364.txt.utf-8.txt";
+    private static final String FILE_PATH = "src/test/resources/33364.txt.utf-8.txt";
     private UTF8 UTF8 = new UTF8(FILE_PATH);
 
 
@@ -28,7 +28,7 @@ public class UTF8Test {
     @Test
     public void getSpecificWordCount() {
         int expectedNumber = 0;
-        String wordToSearch = "Project";
+        String wordToSearch = "this word does not exist";
         int actualNumber = UTF8.getSpecificWordCount(wordToSearch);
         assertEquals(expectedNumber,actualNumber);
     }
