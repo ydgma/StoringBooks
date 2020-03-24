@@ -1,6 +1,5 @@
-package com.ydprojects.othertests;
+package com.ydprojects.util;
 
-import com.ydprojects.util.HibernateUtil;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
