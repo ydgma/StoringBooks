@@ -1,4 +1,6 @@
-public class UTF8 extends AbstractBook{
+package com.ydprojects.DAO;
+
+public class UTF8 extends BookType {
 
     private String filePath;
 
