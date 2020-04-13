@@ -1,25 +1,23 @@
 package com.ydprojects.DAO;
 
-import com.ydprojects.modal.Book;
+import com.ydprojects.modal.BookImpl;
 import com.ydprojects.util.HibernateUtil;
-import org.hibernate.Hibernate;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 public class BookDAO {
 
     private static final Logger LOG = LoggerFactory.getLogger(BookDAO.class);
-    public boolean addBook(Book book) {
+    public boolean addBook(BookImpl bookImpl) {
         Transaction transaction = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 transaction = session.beginTransaction();
-                session.save(book);
+                session.save(bookImpl);
                 transaction.commit();
-                LOG.info("Successfully saved the student");
+                LOG.info("Successfully saved book");
                 return true;
         } catch (Exception e) {
             if (transaction != null) {
@@ -31,8 +29,8 @@ public class BookDAO {
         return false;
     }
 
-    public Book getBook() {
+    /*public BookImpl getBook() {
         //todo
-        return new Book(0,null,null,0,0);
-    }
+        //return new BookImpl(0,null,null,0,0);
+    }*/
 }

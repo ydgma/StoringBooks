@@ -1,6 +1,6 @@
 package com.ydprojects.util;
 
-import com.ydprojects.modal.Book;
+import com.ydprojects.modal.BookImpl;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -34,7 +34,7 @@ public class HibernateUtil {
             DRIVER = prop.getProperty("jdbc.driver");
 
         } catch (IOException ex) {
-            System.out.println(ex);
+            LOG.info("{}",ex);
         }
     }
 
@@ -50,7 +50,7 @@ public class HibernateUtil {
                 properties.put(Environment.DRIVER, DRIVER);
                 properties.put(Environment.SHOW_SQL, "true");
                 configuration.setProperties(properties);
-                configuration.addAnnotatedClass(Book.class);
+                configuration.addAnnotatedClass(BookImpl.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
