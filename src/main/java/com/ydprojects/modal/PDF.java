@@ -1,84 +1,50 @@
 package com.ydprojects.modal;
 
+import com.ydprojects.util.BookConverterUtil;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.File;
 import java.io.IOException;
 
-public class PDF extends AbstractBook {
-    private static final Logger LOG = LoggerFactory.getLogger(AbstractBook.class);
-    private String bookContentsAsString;
-    private int wordCount;
-    private int specificWordCount;
-    private byte [] bookAsFile;
-    private String bookName;
-    private String filePath;
+public class PDF extends BookImpl {
+    private static final Logger LOG = LoggerFactory.getLogger(PDF.class);
+    @Transient
     private PDDocument PDFDocument;
+    private static final String BOOK_TYPE = "PDF";
 
-    public PDF (String filePath, String bookName){
-        this.bookContentsAsString = convertBookContentsToString();
-        this.wordCount = super.wordCount();
-        this.bookName = bookName;
-        this.filePath = filePath;
+    public PDF(String filePath, String bookContentsAsString, int wordCount, int specificWordCount, byte[] bookAsFile, String bookName) {
+        super(filePath,BOOK_TYPE, bookContentsAsString, wordCount, specificWordCount, bookAsFile, bookName);
     }
 
-    public String convertBookContentsToString() {
+    public PDF(String bookName, String filePath, String wordToSearch) {
+        super(bookName,filePath, BOOK_TYPE, wordToSearch);
+
+    }
+
+    @Override
+    public String convertBookToString() {
         loadPDF();
         try {
             PDFTextStripperByArea stripper = new PDFTextStripperByArea();
             stripper.setSortByPosition(true);
             PDFTextStripper tStripper = new PDFTextStripper();
-            bookContentsAsString = tStripper.getText(PDFDocument);
-            return bookContentsAsString;
+            return tStripper.getText(PDFDocument);
         } catch (IOException e) {
             LOG.info("{}",e);
         }
         return "failed to convert the pdf to string";
     }
 
-    @Override
-    public String getBookContentsAsString() {
-        return bookContentsAsString;
-    }
-
-    @Override
-    public int getWordCount() {
-        return wordCount;
-    }
-
-    @Override
-    public int getSpecificWordCount(String wordToSearch) {
-        this.specificWordCount = super.specificWordCount(wordToSearch);
-        return specificWordCount;
-    }
-
-    @Override
-    public byte[] getBookAsFile() {
-        return new byte[0];
-    }
-
-    @Override
-    public String bookName() {
-        return bookName;
-    }
-
-    @Override
-    public String getBookFilePath() {
-        return filePath;
-    }
-
-    @Override
-    public String getBookType() {
-        return "PDF";
-    }
-
     private void loadPDF() {
         try {
-            PDFDocument = PDDocument.load(new File(filePath));
+            PDFDocument = PDDocument.load(new File(getFilePath()));
         } catch (IOException e) {
             LOG.info("{}",e);
         }

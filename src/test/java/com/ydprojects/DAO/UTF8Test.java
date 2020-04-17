@@ -13,14 +13,14 @@ public class UTF8Test {
     private static final Logger LOG = LoggerFactory.getLogger(UTF8Test.class);
     private static final String FILE_PATH = "src/test/resources/33364.txt.utf-8.txt";
     private static final String BOOK_NAME = "test Book";
-    private com.ydprojects.modal.UTF8 UTF8 = new UTF8(FILE_PATH,BOOK_NAME);
+    //private com.ydprojects.modal.UTF8 UTF8 = new UTF8(FILE_PATH,BOOK_NAME);
 
 
-    @Test
+    /*@Test
     public void getFileContentsAsStringTest() {
         boolean isEmpty = UTF8.getBookContentsAsString().isEmpty();
         assertFalse(isEmpty);
-    }
+    }*/
 
    /* @Test
     public void getWordCountTest() {

@@ -1,72 +1,44 @@
 package com.ydprojects.modal;
 
+import com.ydprojects.util.BookConverterUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-public class UTF8 extends AbstractBook {
-    private static final Logger LOG = LoggerFactory.getLogger(AbstractBook.class);
-    private String bookContentsAsString;
-    private int wordCount;
-    private int specificWordCount;
-    private byte [] bookAsFile;
-    private String bookName;
-    private String filePath;
+@Entity
+@Table(name = "book")
+public class UTF8 extends BookImpl {
+    @Transient
+    private static final Logger LOG = LoggerFactory.getLogger(UTF8.class);
+    private static final String BOOK_TYPE = "UTF8";
+    @Transient
+    private String filepath;
 
-    public UTF8(String filePath, String bookName) {
-        this.filePath = filePath;
-        this.bookContentsAsString = convertBookContentsToString();
-        this.wordCount = super.wordCount();
-        this.bookName = bookName;
-        this.filePath = filePath;
+
+    public UTF8(String filePath,String bookContentsAsString, int wordCount, int specificWordCount, byte[] bookAsFile, String bookName) {
+        super(filePath,"BOOK_TYPE", bookContentsAsString, wordCount, specificWordCount, bookAsFile, bookName);
     }
 
-    private String convertBookContentsToString () {
-        String filePath = getBookFilePath();
+    public UTF8(String bookName, String filePath, String wordToSearch) {
+        super(bookName,filePath, BOOK_TYPE, wordToSearch);
+        this.filepath = filePath;
+
+    }
+
+    @Override
+    public String convertBookToString () {
+        String filePath = super.getFilePath();
         try {
-            bookContentsAsString = String.join("", Files.readAllLines(Paths.get(filePath)));
+            return String.join("", Files.readAllLines(Paths.get(filePath)));
         } catch (IOException e) {
             LOG.info("{}",e);
         }
         return "failed to convert book to String";
-    }
-
-    @Override
-    public String getBookContentsAsString() {
-        return bookContentsAsString;
-    }
-
-    @Override
-    public int getWordCount() {
-        return wordCount;
-    }
-
-    @Override
-    public int getSpecificWordCount(String wordToSearch) {
-        this.specificWordCount = super.specificWordCount(wordToSearch);
-        return specificWordCount;
-    }
-
-    @Override
-    public byte[] getBookAsFile() {
-        return bookAsFile;
-    }
-
-    @Override
-    public String bookName() {
-        return bookName;
-    }
-
-    @Override
-    public String getBookType() {
-        return "UTF8";
-    }
-
-    @Override
-    public String getBookFilePath() {
-        return filePath;
     }
 }

@@ -1,14 +1,15 @@
 package com.ydprojects.modal;
 
+import com.ydprojects.util.BookConverterUtil;
+
 import javax.persistence.*;
 
-@Entity
-@Table(name = "book")
-public class BookImpl implements Book {
+@MappedSuperclass
+public abstract class BookImpl implements Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "bookID", updatable = false, nullable = false)
+    @Column(name = "bookID")
     private Long id;
 
     @Column(name = "bookType", nullable = false)
@@ -29,7 +30,11 @@ public class BookImpl implements Book {
     @Column(name = "bookName", nullable = false)
     private String bookName;
 
-    public BookImpl(String bookType, String bookContentsAsString, int wordCount, int specificWordCount, byte[] bookAsFile, String bookName) {
+    @Transient
+    private String filePath;
+
+    public BookImpl(String filePath, String bookType, String bookContentsAsString, int wordCount, int specificWordCount, byte[] bookAsFile, String bookName) {
+        this.filePath = filePath;
         this.bookType = bookType;
         this.bookContentsAsString = bookContentsAsString;
         this.wordCount = wordCount;
@@ -37,6 +42,17 @@ public class BookImpl implements Book {
         this.bookName = bookName;
         this.bookAsFile = bookAsFile;
     }
+
+    public BookImpl(String bookName, String filePath, String bookType, String wordToSearch) {
+        this.bookName = bookName;
+        this.filePath = filePath;
+        this.bookType = bookType;
+        setBookContentAsString();
+        setWordCount();
+        setSpecificWordCount(wordToSearch);
+    }
+
+    protected abstract String convertBookToString();
 
     public void setBookType(String bookType) {
         this.bookType = bookType;
@@ -52,6 +68,17 @@ public class BookImpl implements Book {
 
     public void setBookContentsAsString(String bookContentsAsString) {
         this.bookContentsAsString = bookContentsAsString;
+    }
+
+    private void setBookContentAsString() {
+        this.bookContentsAsString = convertBookToString();
+    }
+    private void setSpecificWordCount(String wordToSearch) {
+        this.specificWordCount = BookConverterUtil.specificWordCount(wordToSearch, bookContentsAsString);
+    }
+
+    private void setWordCount() {
+        this.wordCount = BookConverterUtil.wordCount(bookContentsAsString);
     }
 
     @Override
@@ -87,5 +114,9 @@ public class BookImpl implements Book {
     @Override
     public String getBookName(String nameOfTheBook) {
         return bookName;
+    }
+
+    public String getFilePath() {
+        return filePath;
     }
 }

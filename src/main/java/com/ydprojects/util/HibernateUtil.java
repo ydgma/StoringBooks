@@ -1,6 +1,8 @@
 package com.ydprojects.util;
 
 import com.ydprojects.modal.BookImpl;
+import com.ydprojects.modal.PDF;
+import com.ydprojects.modal.UTF8;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -51,6 +53,7 @@ public class HibernateUtil {
                 properties.put(Environment.SHOW_SQL, "true");
                 configuration.setProperties(properties);
                 configuration.addAnnotatedClass(BookImpl.class);
+                configuration.addAnnotatedClass(UTF8.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();

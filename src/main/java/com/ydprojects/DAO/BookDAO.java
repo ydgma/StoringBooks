@@ -10,12 +10,12 @@ import org.slf4j.LoggerFactory;
 public class BookDAO {
 
     private static final Logger LOG = LoggerFactory.getLogger(BookDAO.class);
-    public boolean addBook(BookImpl bookImpl) {
+    public boolean addBook(BookImpl bookimpl) {
         Transaction transaction = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
                 transaction = session.beginTransaction();
-                session.save(bookImpl);
+                session.save(bookimpl);
                 transaction.commit();
                 LOG.info("Successfully saved book");
                 return true;
