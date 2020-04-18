@@ -1,6 +1,5 @@
 package com.ydprojects.modal;
 
-import com.ydprojects.util.BookConverterUtil;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
@@ -13,10 +12,14 @@ import javax.persistence.Transient;
 import java.io.File;
 import java.io.IOException;
 
+@Entity
+@Table(name = "book")
 public class PDF extends BookImpl {
+    @Transient
     private static final Logger LOG = LoggerFactory.getLogger(PDF.class);
     @Transient
     private PDDocument PDFDocument;
+    @Transient
     private static final String BOOK_TYPE = "PDF";
 
     public PDF(String filePath, String bookContentsAsString, int wordCount, int specificWordCount, byte[] bookAsFile, String bookName) {

@@ -54,6 +54,7 @@ public class HibernateUtil {
                 configuration.setProperties(properties);
                 configuration.addAnnotatedClass(BookImpl.class);
                 configuration.addAnnotatedClass(UTF8.class);
+                configuration.addAnnotatedClass(PDF.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();

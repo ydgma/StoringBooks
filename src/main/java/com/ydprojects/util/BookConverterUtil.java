@@ -1,19 +1,26 @@
 package com.ydprojects.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
 public class BookConverterUtil {
+    private static final Logger LOG = LoggerFactory.getLogger(BookConverterUtil.class);
     protected static final String WHITE_SPACE_SPLITTER = "\\s+";
 
-    public static byte[] convertBookToFile(String filePath) throws IOException {
+    public static byte[] convertBookToFile(String filePath){
             File inputFile = new File(filePath);
-            FileInputStream inputStream = new FileInputStream(inputFile);
-
             byte[] fileBytes = new byte[(int) inputFile.length()];
+        try {
+            FileInputStream inputStream = new FileInputStream(inputFile);
             inputStream.read(fileBytes);
             inputStream.close();
+        } catch (IOException e) {
+           LOG.info("{}",e);
+        }
             return fileBytes;
     }
 

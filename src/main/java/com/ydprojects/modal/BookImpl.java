@@ -15,7 +15,7 @@ public abstract class BookImpl implements Book {
     @Column(name = "bookType", nullable = false)
     private String bookType;
 
-    @Column(name = "contentAsString", nullable = false)
+    @Transient
     private String bookContentsAsString;
 
     @Column(name = "wordCount", nullable = false)
@@ -50,6 +50,7 @@ public abstract class BookImpl implements Book {
         setBookContentAsString();
         setWordCount();
         setSpecificWordCount(wordToSearch);
+        setBookAsFile();
     }
 
     protected abstract String convertBookToString();
@@ -73,12 +74,17 @@ public abstract class BookImpl implements Book {
     private void setBookContentAsString() {
         this.bookContentsAsString = convertBookToString();
     }
+
     private void setSpecificWordCount(String wordToSearch) {
         this.specificWordCount = BookConverterUtil.specificWordCount(wordToSearch, bookContentsAsString);
     }
 
     private void setWordCount() {
         this.wordCount = BookConverterUtil.wordCount(bookContentsAsString);
+    }
+
+    private void setBookAsFile() {
+        this.bookAsFile = BookConverterUtil.convertBookToFile(filePath);
     }
 
     @Override
