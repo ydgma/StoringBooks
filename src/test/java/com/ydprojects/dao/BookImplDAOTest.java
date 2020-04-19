@@ -1,16 +1,22 @@
-package com.ydprojects.DAO;
+package com.ydprojects.dao;
 
 import com.ydprojects.modal.BookFactory;
+import com.ydprojects.modal.BookImpl;
 import com.ydprojects.modal.PDF;
 import com.ydprojects.modal.UTF8;
+import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class BookImplDAOTest {
     private BookDAO bookDAO= new BookDAO();
+    private static final Logger LOG = LoggerFactory.getLogger(BookImplDAOTest.class);
 
     @Test
     public void addUTF8Test() throws IOException {
@@ -27,4 +33,19 @@ public class BookImplDAOTest {
         boolean successfullySubmitted = bookDAO.addBook(pdf);
         assertTrue(successfullySubmitted);
     }
+
+    // need a way to mock the values instead of querying database
+
+    @Test
+    public void getPDFTest() {
+        PDF bookImpl = bookDAO.getBook(16L, PDF.class);
+        assertNotNull(bookImpl);
+    }
+
+    @Test
+    public void getUTF8Test() {
+        UTF8 bookImpl = bookDAO.getBook(15L, UTF8.class);
+        assertNotNull(bookImpl);
+    }
+
 }

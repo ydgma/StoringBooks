@@ -1,7 +1,6 @@
 
-package com.ydprojects.DAO;
+package com.ydprojects.modal;
 
-import com.ydprojects.modal.UTF8;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,23 +8,22 @@ import org.slf4j.LoggerFactory;
 import static org.junit.Assert.*;
 
 public class UTF8Test {
-    //TODO need to add mocking
     private static final Logger LOG = LoggerFactory.getLogger(UTF8Test.class);
     private static final String FILE_PATH = "src/test/resources/33364.txt.utf-8.txt";
     private static final String BOOK_NAME = "test Book";
-    //private com.ydprojects.modal.UTF8 UTF8 = new UTF8(FILE_PATH,BOOK_NAME);
+    private static final String SPECIFIC_WORD_TO_SEARCH = "project";
+    private com.ydprojects.modal.UTF8 UTF8 = new UTF8(BOOK_NAME,FILE_PATH,SPECIFIC_WORD_TO_SEARCH);
 
-
-    /*@Test
+    @Test
     public void getFileContentsAsStringTest() {
         boolean isEmpty = UTF8.getBookContentsAsString().isEmpty();
         assertFalse(isEmpty);
-    }*/
+    }
 
-   /* @Test
+    @Test
     public void getWordCountTest() {
         int expected = 4448;
-        int actual = UTF8.wordCount();
+        int actual = UTF8.getWordCount();
         assertEquals(expected,actual);
     }
 
@@ -33,8 +31,8 @@ public class UTF8Test {
     public void getSpecificWordCount() {
         int expectedNumber = 0;
         String wordToSearch = "this word does not exist";
-        int actualNumber = UTF8.specificWordCount(wordToSearch);
+        int actualNumber = UTF8.getSpecificWordCount(wordToSearch);
         assertEquals(expectedNumber,actualNumber);
-    }*/
+    }
 }
 

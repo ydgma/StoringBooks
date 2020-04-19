@@ -53,6 +53,8 @@ public abstract class BookImpl implements Book {
         setBookAsFile();
     }
 
+    protected BookImpl(){}
+
     protected abstract String convertBookToString();
 
     public void setBookType(String bookType) {
@@ -84,7 +86,11 @@ public abstract class BookImpl implements Book {
     }
 
     private void setBookAsFile() {
-        this.bookAsFile = BookConverterUtil.convertBookToFile(filePath);
+        this.bookAsFile = BookConverterUtil.convertFileToByteArray(filePath);
+    }
+
+    public int getSpecificWordCount() {
+        return specificWordCount;
     }
 
     @Override
@@ -109,7 +115,7 @@ public abstract class BookImpl implements Book {
 
     @Override
     public int getSpecificWordCount(String specificWordToSearch) {
-        return specificWordCount;
+        return BookConverterUtil.specificWordCount(specificWordToSearch, bookContentsAsString);
     }
 
     @Override

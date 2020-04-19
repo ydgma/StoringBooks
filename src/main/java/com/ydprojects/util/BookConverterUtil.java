@@ -1,5 +1,6 @@
 package com.ydprojects.util;
 
+import javassist.bytecode.ByteArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,7 +12,7 @@ public class BookConverterUtil {
     private static final Logger LOG = LoggerFactory.getLogger(BookConverterUtil.class);
     protected static final String WHITE_SPACE_SPLITTER = "\\s+";
 
-    public static byte[] convertBookToFile(String filePath){
+    public static byte[] convertFileToByteArray(String filePath){
             File inputFile = new File(filePath);
             byte[] fileBytes = new byte[(int) inputFile.length()];
         try {
@@ -37,5 +38,10 @@ public class BookConverterUtil {
 
     public static int wordCount(String contentAsString) {
         return contentAsString.split(WHITE_SPACE_SPLITTER).length;
+    }
+
+    public static String convertByteArrayToFile(Byte[] fileInArrayFormat) {
+
+        return null;
     }
 }

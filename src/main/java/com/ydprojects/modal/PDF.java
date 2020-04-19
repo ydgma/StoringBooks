@@ -22,6 +22,10 @@ public class PDF extends BookImpl {
     @Transient
     private static final String BOOK_TYPE = "PDF";
 
+    private PDF(){
+        super();
+    }
+
     public PDF(String filePath, String bookContentsAsString, int wordCount, int specificWordCount, byte[] bookAsFile, String bookName) {
         super(filePath,BOOK_TYPE, bookContentsAsString, wordCount, specificWordCount, bookAsFile, bookName);
     }
