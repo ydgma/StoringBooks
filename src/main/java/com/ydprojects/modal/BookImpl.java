@@ -93,6 +93,10 @@ public abstract class BookImpl implements Book {
         return specificWordCount;
     }
 
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
+    }
+
     @Override
     public byte[] getBook() {
         return bookAsFile;

@@ -54,4 +54,11 @@ public class BookImplDAOTest {
         bookDAO.deleteBook(17L,PDF.class);
     }
 
+    @Test
+    public void updateBook() {
+       UTF8 utf8 =  bookDAO.getBook(15L, UTF8.class);
+       utf8.setBookName("Updated Name");
+       bookDAO.updateBook(utf8);
+    }
+
 }

@@ -1,7 +1,6 @@
 package com.ydprojects.dao;
 
 import com.ydprojects.modal.BookImpl;
-import com.ydprojects.modal.PDF;
 import com.ydprojects.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -39,11 +38,21 @@ public class BookDAO {
         return book;
     }
 
-    public <T extends BookImpl> void deleteBook(Long bookId, Class T ) {
+    public <T extends BookImpl> void deleteBook(Long bookId, Class T) {
         T book = getBook(bookId, T);
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(book);
+        transaction.commit();
+    }
+
+    public <T extends BookImpl> void updateBook(T newBook) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        if(!newBook.getBookType().equalsIgnoreCase(newBook.getClass().getSimpleName())) {
+            throw new RuntimeException("Unable to modify the type field of the book " + newBook.getClass().getSimpleName());
+        }
+        session.update(newBook);
         transaction.commit();
     }
 }
