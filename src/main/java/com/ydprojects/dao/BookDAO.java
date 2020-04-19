@@ -38,4 +38,12 @@ public class BookDAO {
         }
         return book;
     }
+
+    public <T extends BookImpl> void deleteBook(Long bookId, Class T ) {
+        T book = getBook(bookId, T);
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(book);
+        transaction.commit();
+    }
 }

@@ -124,7 +124,7 @@ public abstract class BookImpl implements Book {
     }
 
     @Override
-    public String getBookName(String nameOfTheBook) {
+    public String getBookName() {
         return bookName;
     }
 

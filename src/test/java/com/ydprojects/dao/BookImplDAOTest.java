@@ -4,6 +4,7 @@ import com.ydprojects.modal.BookFactory;
 import com.ydprojects.modal.BookImpl;
 import com.ydprojects.modal.PDF;
 import com.ydprojects.modal.UTF8;
+import org.apache.commons.lang3.ObjectUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
@@ -46,6 +47,11 @@ public class BookImplDAOTest {
     public void getUTF8Test() {
         UTF8 bookImpl = bookDAO.getBook(15L, UTF8.class);
         assertNotNull(bookImpl);
+    }
+
+    @Test(expected = NullPointerException.class)
+    public void deleteBook() {
+        bookDAO.deleteBook(17L,PDF.class);
     }
 
 }
