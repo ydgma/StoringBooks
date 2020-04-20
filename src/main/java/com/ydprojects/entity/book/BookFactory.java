@@ -1,4 +1,4 @@
-package com.ydprojects.modal;
+package com.ydprojects.entity.book;
 
 public class BookFactory {
 

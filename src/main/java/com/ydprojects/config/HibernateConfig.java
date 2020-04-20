@@ -1,8 +1,8 @@
-package com.ydprojects.util;
+package com.ydprojects.config;
 
-import com.ydprojects.modal.BookImpl;
-import com.ydprojects.modal.PDF;
-import com.ydprojects.modal.UTF8;
+import com.ydprojects.entity.book.BookImpl;
+import com.ydprojects.entity.book.PDF;
+import com.ydprojects.entity.book.UTF8;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -16,13 +16,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-public class HibernateUtil {
+public class HibernateConfig {
     private static SessionFactory sessionFactory;
     public static String USERNAME;
     public static String PASSWORD;
     public static String CONN_URL;
     public static String DRIVER;
-    private static final Logger LOG = LoggerFactory.getLogger(HibernateUtil.class);
+    private static final Logger LOG = LoggerFactory.getLogger(HibernateConfig.class);
 
     public static void loadProperties() {
         try (InputStream input = new FileInputStream("src/project.properties")) {

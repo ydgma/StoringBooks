@@ -1,6 +1,5 @@
-package com.ydprojects.modal;
+package com.ydprojects.entity.book;
 
-import com.ydprojects.util.BookConverterUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

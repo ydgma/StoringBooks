@@ -1,4 +1,4 @@
-package com.ydprojects.modal;
+package com.ydprojects.entity.book;
 
 import com.ydprojects.util.BookConverterUtil;
 

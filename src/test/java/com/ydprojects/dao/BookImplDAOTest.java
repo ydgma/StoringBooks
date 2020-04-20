@@ -1,11 +1,8 @@
 package com.ydprojects.dao;
 
-import com.ydprojects.modal.BookFactory;
-import com.ydprojects.modal.BookImpl;
-import com.ydprojects.modal.PDF;
-import com.ydprojects.modal.UTF8;
-import org.apache.commons.lang3.ObjectUtils;
-import org.junit.Assert;
+import com.ydprojects.entity.book.BookFactory;
+import com.ydprojects.entity.book.PDF;
+import com.ydprojects.entity.book.UTF8;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +13,7 @@ import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 public class BookImplDAOTest {
-    private BookDAO bookDAO= new BookDAO();
+    private BookDAOImpl bookDAO= new BookDAOImpl();
     private static final Logger LOG = LoggerFactory.getLogger(BookImplDAOTest.class);
 
     @Test
@@ -39,13 +36,13 @@ public class BookImplDAOTest {
 
     @Test
     public void getPDFTest() {
-        PDF bookImpl = bookDAO.getBook(16L, PDF.class);
+        PDF bookImpl = (PDF)bookDAO.getBook(16L, PDF.class);
         assertNotNull(bookImpl);
     }
 
     @Test
     public void getUTF8Test() {
-        UTF8 bookImpl = bookDAO.getBook(15L, UTF8.class);
+        UTF8 bookImpl = (UTF8)bookDAO.getBook(15L, UTF8.class);
         assertNotNull(bookImpl);
     }
 
@@ -56,7 +53,7 @@ public class BookImplDAOTest {
 
     @Test
     public void updateBook() {
-       UTF8 utf8 =  bookDAO.getBook(15L, UTF8.class);
+       UTF8 utf8 =  (UTF8)bookDAO.getBook(15L, UTF8.class);
        utf8.setBookName("Updated Name");
        bookDAO.updateBook(utf8);
     }

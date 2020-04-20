@@ -1,6 +1,6 @@
-package com.ydprojects.modal;
+package com.ydprojects.entity.book;
 
-import com.ydprojects.modal.PDF;
+import com.ydprojects.entity.book.PDF;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

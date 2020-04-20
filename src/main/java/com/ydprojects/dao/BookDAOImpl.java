@@ -1,19 +1,20 @@
 package com.ydprojects.dao;
 
-import com.ydprojects.modal.BookImpl;
-import com.ydprojects.util.HibernateUtil;
+import com.ydprojects.entity.book.BookImpl;
+import com.ydprojects.config.HibernateConfig;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BookDAO {
-    private static final Logger LOG = LoggerFactory.getLogger(BookDAO.class);
+public class BookDAOImpl <T extends BookImpl> implements BookDAO{
+    private static final Logger LOG = LoggerFactory.getLogger(BookDAOImpl.class);
 
+    @Override
     public boolean addBook(BookImpl bookimpl) {
         Transaction transaction = null;
 
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = HibernateConfig.getSessionFactory().openSession()) {
                 transaction = session.beginTransaction();
                 session.save(bookimpl);
                 transaction.commit();
@@ -29,8 +30,9 @@ public class BookDAO {
         return false;
     }
 
-    public <T extends BookImpl> T getBook(Long bookId, Class T ) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+    @Override
+    public  T getBook(Long bookId, Class T ) {
+        Session session = HibernateConfig.getSessionFactory().openSession();
         T book = (T) session.get(T, bookId);
         if(!book.getBookType().equalsIgnoreCase(T.getSimpleName())) {
             throw new RuntimeException("please retrieve a valid book with a type of " + T.getSimpleName());
@@ -38,16 +40,18 @@ public class BookDAO {
         return book;
     }
 
-    public <T extends BookImpl> void deleteBook(Long bookId, Class T) {
+    @Override
+    public void deleteBook(Long bookId, Class T) {
         T book = getBook(bookId, T);
-        Session session = HibernateUtil.getSessionFactory().openSession();
+        Session session = HibernateConfig.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(book);
         transaction.commit();
     }
 
-    public <T extends BookImpl> void updateBook(T newBook) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
+    @Override
+    public void updateBook(BookImpl newBook) {
+        Session session = HibernateConfig.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         if(!newBook.getBookType().equalsIgnoreCase(newBook.getClass().getSimpleName())) {
             throw new RuntimeException("Unable to modify the type field of the book " + newBook.getClass().getSimpleName());
