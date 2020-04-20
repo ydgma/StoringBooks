@@ -1,5 +1,6 @@
 package com.ydprojects.util;
 
+import com.ydprojects.config.HibernateConfig;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,10 +17,10 @@ public class MySqlTest {
     private static  Logger LOG = LoggerFactory.getLogger(MySqlTest.class);
 
     private void loadProperties() {
-        HibernateUtil.loadProperties();
-        USERNAME = HibernateUtil.USERNAME;
-        PASSWORD = HibernateUtil.PASSWORD;
-        CONNURL = HibernateUtil.CONN_URL;
+        HibernateConfig.loadProperties();
+        USERNAME = HibernateConfig.USERNAME;
+        PASSWORD = HibernateConfig.PASSWORD;
+        CONNURL = HibernateConfig.CONN_URL;
     }
 
     @Test
