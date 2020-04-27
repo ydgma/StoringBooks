@@ -20,7 +20,7 @@ public class PDF extends BookImpl {
     @Transient
     private PDDocument PDFDocument;
     @Transient
-    private static final String BOOK_TYPE = "PDF";
+    private static final BookType BOOK_TYPE = BookType.PDF;
 
     private PDF(){
         super();

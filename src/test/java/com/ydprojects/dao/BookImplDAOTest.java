@@ -1,6 +1,7 @@
 package com.ydprojects.dao;
 
 import com.ydprojects.entity.book.BookFactory;
+import com.ydprojects.entity.book.BookType;
 import com.ydprojects.entity.book.PDF;
 import com.ydprojects.entity.book.UTF8;
 import org.junit.Test;
@@ -19,7 +20,7 @@ public class BookImplDAOTest {
     @Test
     public void addUTF8Test() throws IOException {
         String filePath = "/Users/yasirudahanayake/IdeaProjects/StoringData/src/test/resources/33364.txt.utf-8.txt";
-        UTF8 book = (UTF8) BookFactory.getBook("UTF8", filePath,"Random Book2", "project");
+        UTF8 book = (UTF8) BookFactory.getBook(BookType.UTF8, filePath,"Random Book2", "project");
         boolean successfullySubmitted = bookDAO.addBook(book);
         assertTrue(successfullySubmitted);
     }
@@ -27,7 +28,7 @@ public class BookImplDAOTest {
     @Test
     public void addPDFTest() {
         String filePath = "/Users/yasirudahanayake/IdeaProjects/StoringData/src/test/resources/33364.txt.utf-8.pdf";
-        PDF pdf = (PDF) BookFactory.getBook("PDF", filePath,"Random Book9", "project");
+        PDF pdf = (PDF) BookFactory.getBook(BookType.PDF, filePath,"Random Book10", "project");
         boolean successfullySubmitted = bookDAO.addBook(pdf);
         assertTrue(successfullySubmitted);
     }

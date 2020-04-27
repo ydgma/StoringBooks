@@ -34,7 +34,7 @@ public class BookDAOImpl <T extends BookImpl> implements BookDAO{
     public  T getBook(Long bookId, Class T ) {
         Session session = HibernateConfig.getSessionFactory().openSession();
         T book = (T) session.get(T, bookId);
-        if(!book.getBookType().equalsIgnoreCase(T.getSimpleName())) {
+        if(!book.getBookType().toString().equalsIgnoreCase(T.getSimpleName())) {
             throw new RuntimeException("please retrieve a valid book with a type of " + T.getSimpleName());
         }
         return book;
@@ -53,7 +53,7 @@ public class BookDAOImpl <T extends BookImpl> implements BookDAO{
     public void updateBook(BookImpl newBook) {
         Session session = HibernateConfig.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        if(!newBook.getBookType().equalsIgnoreCase(newBook.getClass().getSimpleName())) {
+        if(!newBook.getBookType().toString().equalsIgnoreCase(newBook.getClass().getSimpleName())) {
             throw new RuntimeException("Unable to modify the type field of the book " + newBook.getClass().getSimpleName());
         }
         session.update(newBook);

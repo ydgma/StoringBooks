@@ -12,8 +12,9 @@ public abstract class BookImpl implements Book {
     @Column(name = "bookID")
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "bookType", nullable = false)
-    private String bookType;
+    private BookType bookType;
 
     @Transient
     private String bookContentsAsString;
@@ -33,7 +34,7 @@ public abstract class BookImpl implements Book {
     @Transient
     private String filePath;
 
-    public BookImpl(String filePath, String bookType, String bookContentsAsString, int wordCount, int specificWordCount, byte[] bookAsFile, String bookName) {
+    public BookImpl(String filePath, BookType bookType, String bookContentsAsString, int wordCount, int specificWordCount, byte[] bookAsFile, String bookName) {
         this.filePath = filePath;
         this.bookType = bookType;
         this.bookContentsAsString = bookContentsAsString;
@@ -43,7 +44,7 @@ public abstract class BookImpl implements Book {
         this.bookAsFile = bookAsFile;
     }
 
-    public BookImpl(String bookName, String filePath, String bookType, String wordToSearch) {
+    public BookImpl(String bookName, String filePath, BookType bookType, String wordToSearch) {
         this.bookName = bookName;
         this.filePath = filePath;
         this.bookType = bookType;
@@ -57,7 +58,7 @@ public abstract class BookImpl implements Book {
 
     protected abstract String convertBookToString();
 
-    public void setBookType(String bookType) {
+    public void setBookType(BookType bookType) {
         this.bookType = bookType;
     }
 
@@ -123,7 +124,7 @@ public abstract class BookImpl implements Book {
     }
 
     @Override
-    public String getBookType() {
+    public BookType getBookType() {
         return bookType;
     }
 
