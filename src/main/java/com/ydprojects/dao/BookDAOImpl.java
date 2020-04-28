@@ -2,6 +2,9 @@ package com.ydprojects.dao;
 
 import com.ydprojects.entity.book.BookImpl;
 import com.ydprojects.config.HibernateConfig;
+import com.ydprojects.entity.book.BookType;
+import com.ydprojects.entity.book.PDF;
+import com.ydprojects.entity.book.UTF8;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -10,6 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class BookDAOImpl <T extends BookImpl> implements BookDAO{
     private static final Logger LOG = LoggerFactory.getLogger(BookDAOImpl.class);
@@ -35,29 +39,41 @@ public class BookDAOImpl <T extends BookImpl> implements BookDAO{
     }
 
     @Override
-    public  T getBook(Long bookId, Class T ) {
+    public  T getBook(Long bookId, Class clazz ) {
         Session session = HibernateConfig.getSessionFactory().openSession();
-        T book = (T) session.get(T, bookId);
-        if(!book.getBookType().toString().equalsIgnoreCase(T.getSimpleName())) {
-            throw new RuntimeException("please retrieve a valid book with a type of " + T.getSimpleName());
+        T book = (T) session.get(clazz, bookId);
+        if(!book.getBookType().toString().equalsIgnoreCase(clazz.getSimpleName())) {
+            throw new RuntimeException("please retrieve a valid book with a type of " + clazz.getSimpleName());
         }
         return book;
     }
 
-    public List<T> getBookByName(String nameOfBook, Class T ) {
+    public List<T> getBookByName(String nameOfBook, Class clazz ) {
         Session session = HibernateConfig.getSessionFactory().openSession();
-        Criteria criteria = session.createCriteria(T);
+        Criteria criteria = session.createCriteria(clazz);
         List<T> list = criteria.add(Restrictions.eq("bookName", nameOfBook)).list();
         return list;
     }
 
     @Override
-    public void deleteBook(Long bookId, Class T) {
-        T book = getBook(bookId, T);
+    public void deleteBook(Long bookId, Class clazz) {
+        T book = getBook(bookId, clazz);
         Session session = HibernateConfig.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(book);
+        LOG.info("deleting book by id {}", bookId);
         transaction.commit();
+    }
+
+    public void deleteBooksByName(String bookName, Class clazz ) {
+        List<T> books = getBookByName(bookName, clazz);
+        List<T> listOfPDFs = extractBooksOfTypeFromList(books,BookType.PDF);
+        List<T> listOfUTF8s = extractBooksOfTypeFromList(books,BookType.UTF8);
+        //delete PDFs
+        listOfPDFs.forEach(p -> deleteBook(p.getId(),PDF.class));
+        //delete UTF8s
+        listOfUTF8s.forEach(p -> deleteBook(p.getId(), UTF8.class));
+
     }
 
     @Override
@@ -69,5 +85,14 @@ public class BookDAOImpl <T extends BookImpl> implements BookDAO{
         }
         session.update(newBook);
         transaction.commit();
+    }
+
+
+    private List<T> extractBooksOfTypeFromList(List<T> books, BookType bookType) {
+        return books
+                .stream()
+                .filter(b-> b.getBookType() == bookType)
+                .collect(Collectors.toList());
+
     }
 }
