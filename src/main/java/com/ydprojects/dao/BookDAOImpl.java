@@ -2,10 +2,14 @@ package com.ydprojects.dao;
 
 import com.ydprojects.entity.book.BookImpl;
 import com.ydprojects.config.HibernateConfig;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
 
 public class BookDAOImpl <T extends BookImpl> implements BookDAO{
     private static final Logger LOG = LoggerFactory.getLogger(BookDAOImpl.class);
@@ -38,6 +42,13 @@ public class BookDAOImpl <T extends BookImpl> implements BookDAO{
             throw new RuntimeException("please retrieve a valid book with a type of " + T.getSimpleName());
         }
         return book;
+    }
+
+    public List<T> getBookByName(String nameOfBook, Class T ) {
+        Session session = HibernateConfig.getSessionFactory().openSession();
+        Criteria criteria = session.createCriteria(T);
+        List<T> list = criteria.add(Restrictions.eq("bookName", nameOfBook)).list();
+        return list;
     }
 
     @Override

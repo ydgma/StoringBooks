@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -45,6 +46,12 @@ public class BookImplDAOTest {
     public void getUTF8Test() {
         UTF8 bookImpl = (UTF8)bookDAO.getBook(15L, UTF8.class);
         assertNotNull(bookImpl);
+    }
+
+    @Test
+    public void getBookByName() {
+       List<PDF> bookList =  bookDAO.getBookByName("Random Book9", PDF.class);
+       assertTrue(bookList.size()>1);
     }
 
     @Test(expected = NullPointerException.class)
