@@ -26,12 +26,12 @@ public class PDF extends BookImpl {
         super();
     }
 
-    public PDF(String filePath, String bookContentsAsString, int wordCount, int specificWordCount, byte[] bookAsFile, String bookName) {
-        super(filePath,BOOK_TYPE, bookContentsAsString, wordCount, specificWordCount, bookAsFile, bookName);
+    public PDF(String filePath, String bookContentsAsString, int wordCount, byte[] bookAsFile, String bookName) {
+        super(filePath,BOOK_TYPE, bookContentsAsString, wordCount, bookAsFile, bookName);
     }
 
-    public PDF(String bookName, String filePath, String wordToSearch) {
-        super(bookName,filePath, BOOK_TYPE, wordToSearch);
+    public PDF(String bookName, String filePath) {
+        super(bookName,filePath, BOOK_TYPE);
 
     }
 

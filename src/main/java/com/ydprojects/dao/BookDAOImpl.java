@@ -87,12 +87,10 @@ public class BookDAOImpl <T extends BookImpl> implements BookDAO{
         transaction.commit();
     }
 
-
     private List<T> extractBooksOfTypeFromList(List<T> books, BookType bookType) {
         return books
                 .stream()
                 .filter(b-> b.getBookType() == bookType)
                 .collect(Collectors.toList());
-
     }
 }

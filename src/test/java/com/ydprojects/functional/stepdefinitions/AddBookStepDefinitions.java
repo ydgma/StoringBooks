@@ -18,7 +18,7 @@ public class AddBookStepDefinitions {
     public void iAddA(String bookType) {
         BookType type = bookType.equalsIgnoreCase("PDF") ? BookType.PDF : BookType.UTF8;
         String filePath = bookType.equalsIgnoreCase("PDF") ? PDF_FILE_PATH : UTF8_FILE_PATH;
-        BookImpl book = BookFactory.getBook(type,filePath,TEST_BOOK_NAME, "project");
+        BookImpl book = BookFactory.getBook(type,filePath,TEST_BOOK_NAME);
         dao.addBook(book);
     }
 

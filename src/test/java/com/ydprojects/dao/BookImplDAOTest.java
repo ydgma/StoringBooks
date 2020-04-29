@@ -20,21 +20,23 @@ public class BookImplDAOTest {
     private static final String UTF8_FILE_PATH = "/Users/yasirudahanayake/IdeaProjects/StoringData/src/test/resources/33364.txt.utf-8.txt";
     private static final String PDF_FILE_PATH  = "/Users/yasirudahanayake/IdeaProjects/StoringData/src/test/resources/33364.txt.utf-8.pdf";
 
+    // need a way to mock the values instead of querying database
+    // or clean up values after running each test
+
     @Test
     public void addUTF8Test() throws IOException {
-        UTF8 book = (UTF8) BookFactory.getBook(BookType.UTF8, UTF8_FILE_PATH,"Random Book2", "project");
+        UTF8 book = (UTF8) BookFactory.getBook(BookType.UTF8, UTF8_FILE_PATH,"Random Book2");
         boolean successfullySubmitted = bookDAO.addBook(book);
         assertTrue(successfullySubmitted);
     }
 
     @Test
     public void addPDFTest() {
-        PDF pdf = (PDF) BookFactory.getBook(BookType.PDF, PDF_FILE_PATH,"Random Book10", "project");
+        PDF pdf = (PDF) BookFactory.getBook(BookType.PDF, PDF_FILE_PATH,"Random Book10");
         boolean successfullySubmitted = bookDAO.addBook(pdf);
         assertTrue(successfullySubmitted);
     }
 
-    // need a way to mock the values instead of querying database
 
     @Test
     public void getPDFTest() {
@@ -50,18 +52,17 @@ public class BookImplDAOTest {
 
     @Test
     public void getBookByNameTest() {
-       List<PDF> bookList =  bookDAO.getBookByName("Random Book9", PDF.class);
+       List<PDF> bookList =  bookDAO.getBookByName("Random Book2", PDF.class);
        assertTrue(bookList.size()>1);
     }
 
     @Test(expected = NullPointerException.class)
     public void deleteBookByNameTest() {
-        PDF pdf = (PDF) BookFactory.getBook(BookType.PDF, PDF_FILE_PATH,"Delete Book", "project");
+        PDF pdf = (PDF) BookFactory.getBook(BookType.PDF, PDF_FILE_PATH,"Delete Book");
         boolean successfullySubmitted = bookDAO.addBook(pdf);
         bookDAO.deleteBook(pdf.getId(),PDF.class);
         bookDAO.getBook(pdf.getId(), PDF.class);
     }
-
 
     @Test(expected = NullPointerException.class)
     public void deleteBookTest() {

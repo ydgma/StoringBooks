@@ -24,12 +24,12 @@ public class UTF8 extends BookImpl {
         super();
     }
 
-    public UTF8(String filePath,String bookContentsAsString, int wordCount, int specificWordCount, byte[] bookAsFile, String bookName) {
-        super(filePath,BOOK_TYPE, bookContentsAsString, wordCount, specificWordCount, bookAsFile, bookName);
+    public UTF8(String filePath,String bookContentsAsString, int wordCount, byte[] bookAsFile, String bookName) {
+        super(filePath,BOOK_TYPE, bookContentsAsString, wordCount, bookAsFile, bookName);
     }
 
-    public UTF8(String bookName, String filePath, String wordToSearch) {
-        super(bookName,filePath, BOOK_TYPE, wordToSearch);
+    public UTF8(String bookName, String filePath) {
+        super(bookName,filePath, BOOK_TYPE);
         this.filepath = filePath;
 
     }
