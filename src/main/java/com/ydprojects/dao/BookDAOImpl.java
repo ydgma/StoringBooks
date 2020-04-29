@@ -56,13 +56,22 @@ public class BookDAOImpl <T extends BookImpl> implements BookDAO{
     }
 
     @Override
-    public void deleteBook(Long bookId, Class clazz) {
+    public boolean deleteBook(Long bookId, Class clazz) {
         T book = getBook(bookId, clazz);
         Session session = HibernateConfig.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
-        session.delete(book);
-        LOG.info("deleting book by id {}", bookId);
-        transaction.commit();
+        try {
+            session.delete(book);
+            LOG.info("deleting book by id {}", bookId);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if(transaction!= null) {
+                transaction.rollback();
+            }
+            LOG.info("unable to delete book with book id :{} because it does not exist {}",bookId,e);
+            return false;
+        }
     }
 
     public void deleteBooksByName(String bookName, Class clazz ) {
@@ -73,18 +82,26 @@ public class BookDAOImpl <T extends BookImpl> implements BookDAO{
         listOfPDFs.forEach(p -> deleteBook(p.getId(),PDF.class));
         //delete UTF8s
         listOfUTF8s.forEach(p -> deleteBook(p.getId(), UTF8.class));
-
     }
 
     @Override
-    public void updateBook(BookImpl newBook) {
+    public boolean updateBook(BookImpl newBook) {
         Session session = HibernateConfig.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         if(!newBook.getBookType().toString().equalsIgnoreCase(newBook.getClass().getSimpleName())) {
             throw new RuntimeException("Unable to modify the type field of the book " + newBook.getClass().getSimpleName());
         }
-        session.update(newBook);
-        transaction.commit();
+        try {
+            session.update(newBook);
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction!= null) {
+                transaction.rollback();
+            }
+            LOG.info("Unable to update book with name: {} {}",newBook.getBookName(), e);
+            return false;
+        }
     }
 
     private List<T> extractBooksOfTypeFromList(List<T> books, BookType bookType) {
