@@ -9,8 +9,7 @@ import static org.junit.Assert.assertFalse;
 public class PDFTest {
     private String FILE_PATH = "src/test/resources/33364.txt.utf-8.pdf";
     private static final String BOOK_NAME = "RANDOM BOOK";
-    private static final String SPECIFIC_WORD_TO_SEARCH = "project";
-    private PDF pdf = new PDF(BOOK_NAME, FILE_PATH, SPECIFIC_WORD_TO_SEARCH);
+    private PDF pdf = new PDF(BOOK_NAME, FILE_PATH);
 
     @Test
     public void getFileContentsAsStringTest() {

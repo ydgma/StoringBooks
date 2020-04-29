@@ -12,8 +12,9 @@ public abstract class BookImpl implements Book {
     @Column(name = "bookID")
     private Long id;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "bookType", nullable = false)
-    private String bookType;
+    private BookType bookType;
 
     @Transient
     private String bookContentsAsString;
@@ -21,7 +22,7 @@ public abstract class BookImpl implements Book {
     @Column(name = "wordCount", nullable = false)
     private int wordCount;
 
-    @Column(name = "specificWordCount", nullable = false)
+    @Transient
     private int specificWordCount;
 
     @Column(name = "bookAsFile", columnDefinition = "BLOB")
@@ -33,23 +34,21 @@ public abstract class BookImpl implements Book {
     @Transient
     private String filePath;
 
-    public BookImpl(String filePath, String bookType, String bookContentsAsString, int wordCount, int specificWordCount, byte[] bookAsFile, String bookName) {
+    public BookImpl(String filePath, BookType bookType, String bookContentsAsString, int wordCount, byte[] bookAsFile, String bookName) {
         this.filePath = filePath;
         this.bookType = bookType;
         this.bookContentsAsString = bookContentsAsString;
         this.wordCount = wordCount;
-        this.specificWordCount = specificWordCount;
         this.bookName = bookName;
         this.bookAsFile = bookAsFile;
     }
 
-    public BookImpl(String bookName, String filePath, String bookType, String wordToSearch) {
+    public BookImpl(String bookName, String filePath, BookType bookType) {
         this.bookName = bookName;
         this.filePath = filePath;
         this.bookType = bookType;
         setBookContentAsString();
         setWordCount();
-        setSpecificWordCount(wordToSearch);
         setBookAsFile();
     }
 
@@ -57,7 +56,7 @@ public abstract class BookImpl implements Book {
 
     protected abstract String convertBookToString();
 
-    public void setBookType(String bookType) {
+    public void setBookType(BookType bookType) {
         this.bookType = bookType;
     }
 
@@ -117,13 +116,12 @@ public abstract class BookImpl implements Book {
         return id;
     }
 
-    @Override
     public int getSpecificWordCount(String specificWordToSearch) {
         return BookConverterUtil.specificWordCount(specificWordToSearch, bookContentsAsString);
     }
 
     @Override
-    public String getBookType() {
+    public BookType getBookType() {
         return bookType;
     }
 
