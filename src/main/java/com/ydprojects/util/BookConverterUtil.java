@@ -4,9 +4,7 @@ import javassist.bytecode.ByteArray;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
+import java.io.*;
 
 public class BookConverterUtil {
     private static final Logger LOG = LoggerFactory.getLogger(BookConverterUtil.class);
@@ -40,8 +38,11 @@ public class BookConverterUtil {
         return contentAsString.split(WHITE_SPACE_SPLITTER).length;
     }
 
-    public static String convertByteArrayToFile(Byte[] fileInArrayFormat) {
-
-        return null;
+    public static void writeByteArrayToFile(byte[] content, String fileToWriteTo) throws IOException {
+        File file = new File(fileToWriteTo);
+        try(BufferedOutputStream salida = new BufferedOutputStream(new FileOutputStream(file))){
+            salida.write(content);
+            salida.flush();
+        }
     }
 }
