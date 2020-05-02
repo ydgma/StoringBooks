@@ -19,8 +19,8 @@ import java.nio.file.Paths;
 
 public class BookConverterUtilTest {
     private static UTF8 unitTestBook1;
-    private static final String UTF8_FILE_PATH = "/Users/yasirudahanayake/IdeaProjects/StoringData/src/test/resources/33364.txt.utf-8.txt";
-    private static final String FILE_DESTINATION = "/Users/yasirudahanayake/IdeaProjects/StoringData/src/test/resources/randomFile.pdf";
+    private static final String UTF8_FILE_PATH = "src/test/resources/33364.txt.utf-8.txt";
+    private static final String FILE_DESTINATION = "src/test/resources/randomFile.pdf";
     private static BookDAOImpl bookDAO;
     private static final Logger LOG = LoggerFactory.getLogger(BookConverterUtilTest.class);
 
