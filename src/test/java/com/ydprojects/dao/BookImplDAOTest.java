@@ -17,8 +17,8 @@ import static org.junit.Assert.assertTrue;
 public class BookImplDAOTest {
     private static BookDAOImpl bookDAO= new BookDAOImpl();
     private static final Logger LOG = LoggerFactory.getLogger(BookImplDAOTest.class);
-    private static final String UTF8_FILE_PATH = "/Users/yasirudahanayake/IdeaProjects/StoringData/src/test/resources/33364.txt.utf-8.txt";
-    private static final String PDF_FILE_PATH  = "/Users/yasirudahanayake/IdeaProjects/StoringData/src/test/resources/33364.txt.utf-8.pdf";
+    private static final String UTF8_FILE_PATH = "src/test/resources/33364.txt.utf-8.txt";
+    private static final String PDF_FILE_PATH  = "src/test/resources/33364.txt.utf-8.pdf";
     private static UTF8 unitTestBook1;
     private static PDF unitTestBook2;
     private static PDF unitTestBook3;
