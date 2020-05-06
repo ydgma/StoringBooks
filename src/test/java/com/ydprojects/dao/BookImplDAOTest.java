@@ -13,7 +13,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertNotNull;
@@ -53,7 +52,6 @@ public class BookImplDAOTest {
         boolean successfullySubmitted = bookDAO.addBook(unitTestBook2);
         assertTrue(successfullySubmitted);
         bookDAO.deleteBook(unitTestBook2.getId(),PDF.class);
-
     }
 
     @Test
