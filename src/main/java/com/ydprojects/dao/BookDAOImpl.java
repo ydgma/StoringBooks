@@ -86,8 +86,10 @@ public class BookDAOImpl <T extends BookImpl> implements BookDAO{
         List<T> listOfPDFs = extractBooksOfTypeFromList(books,BookType.PDF);
         List<T> listOfUTF8s = extractBooksOfTypeFromList(books,BookType.UTF8);
         //delete PDFs
+        LOG.info("Deleting PDF's by name {}", bookName);
         listOfPDFs.forEach(p -> deleteBook(p.getId(),PDF.class));
         //delete UTF8s
+        LOG.info("Deleting UTF8's by name {}", bookName);
         listOfUTF8s.forEach(p -> deleteBook(p.getId(), UTF8.class));
     }
 
