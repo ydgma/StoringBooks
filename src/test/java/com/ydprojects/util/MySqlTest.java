@@ -17,7 +17,7 @@ public class MySqlTest {
     private static  Logger LOG = LoggerFactory.getLogger(MySqlTest.class);
 
     private void loadProperties() {
-        HibernateConfig.loadProperties();
+        //HibernateConfig.loadProperties();
         USERNAME = HibernateConfig.USERNAME;
         PASSWORD = HibernateConfig.PASSWORD;
         CONNURL = HibernateConfig.CONN_URL;
