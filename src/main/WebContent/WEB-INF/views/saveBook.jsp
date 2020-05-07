@@ -11,15 +11,20 @@
 <body>
 <div align="center">
     <h2>Add a new book</h2>
+    <h4>Test book stuff ${message1}</h4>
     <form:form action="save" method="post" modelAttribute="book">
         <table border="0" cellpadding="5">
             <tr>
                 <td>Book Name:</td>
-                <td><form:input path="name" /></td>
+                <td><form:input path="bookName" /></td>
+            </tr>
+            <tr>
+                <td>Book type (either PDF or UTF8):</td>
+                <td><form:input path="bookType" /></td>
             </tr>
             <tr>
                 <td>File Location:</td>
-                 <td><form:input path="location" /></td>
+                 <td><form:input path="filePath" /></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Save" /></td>
