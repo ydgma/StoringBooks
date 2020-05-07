@@ -11,6 +11,7 @@
 <body>
 <div align="center">
     <h2>Add a new book</h2>
+    <h4>Test book stuff ${message1}</h4>
     <form:form action="save" method="post" modelAttribute="book">
         <table border="0" cellpadding="5">
             <tr>

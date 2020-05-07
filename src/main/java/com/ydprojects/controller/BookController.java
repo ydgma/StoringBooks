@@ -27,6 +27,7 @@ public class BookController {
         UTF8 utf8 = (UTF8) bookDAO.getBook(1L, UTF8.class);
 
         //test method
+        mav.addObject("message","work in progress");
         mav.addObject("bookname",utf8.getBookName());
         return mav;
     }
@@ -34,6 +35,7 @@ public class BookController {
     @RequestMapping("/addBook")
     public String newBook(Map<String,Object> model){
         model.put("book", new BookImpl());
+        model.put("message1","work in progress");
         return "add_book";
     }
 }
