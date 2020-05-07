@@ -9,8 +9,8 @@ import org.junit.Assert;
 import java.util.List;
 
 public class AddBookStepDefinitions {
-    private static final String UTF8_FILE_PATH = "/Users/yasirudahanayake/IdeaProjects/StoringData/src/test/resources/33364.txt.utf-8.txt";
-    private static final String PDF_FILE_PATH = "/Users/yasirudahanayake/IdeaProjects/StoringData/src/test/resources/33364.txt.utf-8.pdf";
+    private static final String UTF8_FILE_PATH = "src/test/resources/33364.txt.utf-8.txt";
+    private static final String PDF_FILE_PATH = "src/test/resources/33364.txt.utf-8.pdf";
     private static final String TEST_BOOK_NAME = "Random Book9";
     private BookDAOImpl dao = new BookDAOImpl();
 

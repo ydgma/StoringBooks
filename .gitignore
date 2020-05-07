@@ -5,3 +5,7 @@
 /key
 /key.pub
 project.properties
+/src/test/java/com.ydprojects.playpen/
+/src/test/java/com/ydprojects/playpen/
+/src/test/java/com/ydprojects/application.properties
+/src/test/java/com/ydprojects/application.properties
