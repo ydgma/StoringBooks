@@ -2,13 +2,18 @@
 
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 
 <html>
 <head>
-    <title>Add Book</title>
+    <title>Home</title>
 
 </head>
 <body>
-    <h1>${message}</h1>
+<div align="center">
+    <h2>Home</h2>
+    <h3><a href="addBook">Add New Book</a></h3>
+</div>
 </body>
 </html>

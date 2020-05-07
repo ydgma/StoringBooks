@@ -1,5 +1,6 @@
 package com.ydprojects.entity.book;
 
+import com.ydprojects.util.BookConverterUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,17 +25,23 @@ public class UTF8 extends BookImpl {
         super();
     }
 
-    public UTF8(String filePath,String bookContentsAsString, int wordCount, byte[] bookAsFile, String bookName) {
-        super(filePath,BOOK_TYPE, bookContentsAsString, wordCount, bookAsFile, bookName);
+    public UTF8(String filePath, String bookContentsAsString, int wordCount, byte[] bookAsByteArray, String bookName) {
+        setFilePath(filePath);
+        setBookContentsAsString(bookContentsAsString);
+        setWordCount(wordCount);
+        setBook(bookAsByteArray);
+        setBookName(bookName);
     }
 
     public UTF8(String bookName, String filePath) {
-        super(bookName,filePath, BOOK_TYPE);
-        this.filepath = filePath;
-
+        setBookName(bookName);
+        setFilePath(filePath);
+        setBookType(BOOK_TYPE);
+        setBookContentsAsString(convertBookToString());
+        setWordCount(BookConverterUtil.wordCount(getBookContentsAsString()));
+        setBook(BookConverterUtil.convertFileToByteArray(getFilePath()));
     }
 
-    @Override
     public String convertBookToString () {
         String filePath = super.getFilePath();
         try {
