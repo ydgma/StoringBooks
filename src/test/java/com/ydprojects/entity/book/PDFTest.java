@@ -23,12 +23,4 @@ public class PDFTest {
         int actual = pdf.getWordCount();
         assertEquals(expected,actual);
     }
-
-    @Test
-    public void getSpecificWordCount() {
-        int expectedNumber = 0;
-        String wordToSearch = "word that doesn't exist";
-        int actualNumber = pdf.getSpecificWordCount(wordToSearch);
-        assertEquals(expectedNumber,actualNumber);
-    }
 }

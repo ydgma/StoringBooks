@@ -1,5 +1,6 @@
 package com.ydprojects.entity.book;
 
+import com.ydprojects.util.BookConverterUtil;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
@@ -26,16 +27,23 @@ public class PDF extends BookImpl {
         super();
     }
 
-    public PDF(String filePath, String bookContentsAsString, int wordCount, byte[] bookAsFile, String bookName) {
-        super(filePath,BOOK_TYPE, bookContentsAsString, wordCount, bookAsFile, bookName);
+    public PDF(String filePath, String bookContentsAsString, int wordCount, byte[] bookAsByteArray, String bookName) {
+       setFilePath(filePath);
+       setBookContentsAsString(bookContentsAsString);
+       setWordCount(wordCount);
+       setBook(bookAsByteArray);
+       setBookName(bookName);
     }
 
     public PDF(String bookName, String filePath) {
-        super(bookName,filePath, BOOK_TYPE);
-
+        setBookName(bookName);
+        setFilePath(filePath);
+        setBookType(BOOK_TYPE);
+        setBookContentsAsString(convertBookToString());
+        setWordCount(BookConverterUtil.wordCount(getBookContentsAsString()));
+        setBook(BookConverterUtil.convertFileToByteArray(getFilePath()));
     }
 
-    @Override
     public String convertBookToString() {
         loadPDF();
         try {

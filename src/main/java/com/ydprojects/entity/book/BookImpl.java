@@ -5,7 +5,7 @@ import com.ydprojects.util.BookConverterUtil;
 import javax.persistence.*;
 
 @MappedSuperclass
-public abstract class BookImpl implements Book {
+public class BookImpl implements Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,27 +34,7 @@ public abstract class BookImpl implements Book {
     @Transient
     private String filePath;
 
-    public BookImpl(String filePath, BookType bookType, String bookContentsAsString, int wordCount, byte[] bookAsFile, String bookName) {
-        this.filePath = filePath;
-        this.bookType = bookType;
-        this.bookContentsAsString = bookContentsAsString;
-        this.wordCount = wordCount;
-        this.bookName = bookName;
-        this.bookAsFile = bookAsFile;
-    }
-
-    public BookImpl(String bookName, String filePath, BookType bookType) {
-        this.bookName = bookName;
-        this.filePath = filePath;
-        this.bookType = bookType;
-        setBookContentAsString();
-        setWordCount();
-        setBookAsFile();
-    }
-
-    protected BookImpl(){}
-
-    protected abstract String convertBookToString();
+    public BookImpl(){}
 
     public void setBookType(BookType bookType) {
         this.bookType = bookType;
@@ -72,28 +52,24 @@ public abstract class BookImpl implements Book {
         this.bookContentsAsString = bookContentsAsString;
     }
 
-    private void setBookContentAsString() {
-        this.bookContentsAsString = convertBookToString();
+    public void setBookName(String bookName) {
+        this.bookName = bookName;
     }
 
-    private void setSpecificWordCount(String wordToSearch) {
-        this.specificWordCount = BookConverterUtil.specificWordCount(wordToSearch, bookContentsAsString);
+    public void setFilePath(String filePath) {
+        this.filePath = filePath;
     }
 
-    private void setWordCount() {
-        this.wordCount = BookConverterUtil.wordCount(bookContentsAsString);
-    }
-
-    private void setBookAsFile() {
-        this.bookAsFile = BookConverterUtil.convertFileToByteArray(filePath);
+    public void setBook(byte[] bookAsByteArray) {
+        this.bookAsFile = bookAsByteArray;
     }
 
     public int getSpecificWordCount() {
         return specificWordCount;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public String getFilePath() {
+        return filePath;
     }
 
     @Override
@@ -116,10 +92,6 @@ public abstract class BookImpl implements Book {
         return id;
     }
 
-    public int getSpecificWordCount(String specificWordToSearch) {
-        return BookConverterUtil.specificWordCount(specificWordToSearch, bookContentsAsString);
-    }
-
     @Override
     public BookType getBookType() {
         return bookType;
@@ -128,9 +100,5 @@ public abstract class BookImpl implements Book {
     @Override
     public String getBookName() {
         return bookName;
-    }
-
-    public String getFilePath() {
-        return filePath;
     }
 }

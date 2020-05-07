@@ -26,13 +26,5 @@ public class UTF8Test {
         int actual = UTF8.getWordCount();
         assertEquals(expected,actual);
     }
-
-    @Test
-    public void getSpecificWordCount() {
-        int expectedNumber = 0;
-        String wordToSearch = "this word does not exist";
-        int actualNumber = UTF8.getSpecificWordCount(wordToSearch);
-        assertEquals(expectedNumber,actualNumber);
-    }
 }
 
