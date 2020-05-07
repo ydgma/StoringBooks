@@ -24,7 +24,7 @@ public class HibernateConfig {
     public static String CONN_URL;
     public static String DRIVER;
     private static final Logger LOG = LoggerFactory.getLogger(HibernateConfig.class);
-    private static final String ABSOLUTE_PROPERTY_FILE_PATH ="/Users/yasirudahanayake/IdeaProjects/StoringData/src/project.properties";
+    private static final String PROPERTY_FILE_PATH ="src/main/project.properties";
 
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
@@ -66,7 +66,7 @@ public class HibernateConfig {
     }
 
     public static void loadProperties() {
-        try (InputStream input = new FileInputStream(ABSOLUTE_PROPERTY_FILE_PATH)) {
+        try (InputStream input = new FileInputStream(PROPERTY_FILE_PATH)) {
             Properties prop = new Properties();
             // load a properties file
             prop.load(input);
