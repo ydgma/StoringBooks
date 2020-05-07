@@ -13,7 +13,7 @@
 <body>
 <div align="center">
     <h2>Home</h2>
-    <h3><a href="addBook">Add New Book</a></h3>
+    <h3><a href="save">Add New Book</a></h3>
     <h4>Test book stuff ${bookname}</h4>
     <h4>${message}</h4>
 </div>

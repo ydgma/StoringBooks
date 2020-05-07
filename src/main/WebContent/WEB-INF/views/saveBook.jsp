@@ -19,6 +19,10 @@
                 <td><form:input path="bookName" /></td>
             </tr>
             <tr>
+                <td>Book type (either PDF or UTF8):</td>
+                <td><form:input path="bookType" /></td>
+            </tr>
+            <tr>
                 <td>File Location:</td>
                  <td><form:input path="filePath" /></td>
             </tr>
