@@ -15,11 +15,11 @@
         <table border="0" cellpadding="5">
             <tr>
                 <td>Book Name:</td>
-                <td><form:input path="name" /></td>
+                <td><form:input path="bookName" /></td>
             </tr>
             <tr>
                 <td>File Location:</td>
-                 <td><form:input path="location" /></td>
+                 <td><form:input path="filePath" /></td>
             </tr>
             <tr>
                 <td colspan="2"><input type="submit" value="Save" /></td>

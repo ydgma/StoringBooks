@@ -26,9 +26,8 @@ public class BookController {
 
         UTF8 utf8 = (UTF8) bookDAO.getBook(1L, UTF8.class);
 
-        mav.addObject("message",utf8);
+        //test method
         mav.addObject("bookname",utf8.getBookName());
-        mav.addObject("wordcount",utf8.getWordCount());
         return mav;
     }
 
