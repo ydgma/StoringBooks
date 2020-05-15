@@ -12,7 +12,7 @@ CREATE TABLE `book` ( <br />
   `bookName` varchar(40) DEFAULT NULL, <br />
   PRIMARY KEY (`bookID`)) <br />
 
-Ensure there is a project.properties file unser src/main with the following properties: <br />
+Ensure there is a project.properties file under src/main with the following properties: <br />
 db.user= <br />
 db.password= <br />
 db.url= <br />
