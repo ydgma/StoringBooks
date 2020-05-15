@@ -2,7 +2,7 @@
 
 Simple project to test and learn more about storing data using hibernate and spring <br />
 
- MySQLcreate table script:  <br />
+ MySQL create table script:  <br />
 
 CREATE TABLE `book` ( <br />
   `bookType` varchar(10) DEFAULT NULL, <br />
@@ -12,8 +12,10 @@ CREATE TABLE `book` ( <br />
   `bookName` varchar(40) DEFAULT NULL, <br />
   PRIMARY KEY (`bookID`)) <br />
 
-ensure there is a project.properties file unser src/main with the following properties <br />
+Ensure there is a project.properties file unser src/main with the following properties: <br />
 db.user= <br />
 db.password= <br />
 db.url= <br />
 jdbc.driver= <br />
+
+Tools used to run: Apache Tomcat server 9 and Smart Tomcat plugin for Intellij.
