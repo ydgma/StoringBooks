@@ -6,21 +6,17 @@
 
 <html>
 <head>
-    <title>Add Book</title>
+    <title>Add PDF</title>
 </head>
 <body>
 <div align="center">
-    <h2>Add a new book</h2>
-    <h4>Test book stuff ${message1}</h4>
-    <form:form action="save" method="post" modelAttribute="book">
+    <h2>Add a new PDF</h2>
+
+    <form:form action="savePDF" method="post" modelAttribute="PDF">
         <table border="0" cellpadding="5">
             <tr>
                 <td>Book Name:</td>
                 <td><form:input path="bookName" /></td>
-            </tr>
-            <tr>
-                <td>Book type (either PDF or UTF8):</td>
-                <td><form:input path="bookType" /></td>
             </tr>
             <tr>
                 <td>File Location:</td>
