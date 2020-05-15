@@ -1,8 +1,9 @@
 # StoringData
 
 Simple project to test and learn more about storing data using hibernate and spring <br />
-<br />
- MySQLcreate table script  <br />
+
+ MySQLcreate table script:  <br />
+
 CREATE TABLE `book` ( <br />
   `bookType` varchar(10) DEFAULT NULL, <br />
   `wordCount` int DEFAULT NULL, <br />
