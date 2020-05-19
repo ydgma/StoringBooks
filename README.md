@@ -19,3 +19,8 @@ db.url= <br />
 jdbc.driver= <br />
 
 Tools used to run: Apache Tomcat server 9 and Smart Tomcat plugin for Intellij.
+
+TODO:
+* Use a seperate database when testing DAO.
+* Create a teardown to clear test data created. 
+* Add css to view pages.
