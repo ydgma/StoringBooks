@@ -18,6 +18,10 @@
                 <td><form:input path="bookName" /></td>
             </tr>
             <tr>
+                <td>Book Rating(1-10):</td>
+                <td><form:input path="rating" /></td>
+            </tr>
+            <tr>
                 <td>File Location:</td>
                  <td><form:input path="filePath" /></td>
             </tr>

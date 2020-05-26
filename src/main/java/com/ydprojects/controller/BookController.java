@@ -42,6 +42,7 @@ public class BookController {
     @RequestMapping(value = "/savePDF", method = RequestMethod.POST)
     public String savePDF(@ModelAttribute("PDF") PDF book) {
         PDF pdf = new PDF(book.getBookName(),book.getFilePath());
+        pdf.setRating(book.getRating());
         bookDAO.addBook(pdf);
         return "redirect:/";
     }
@@ -49,6 +50,7 @@ public class BookController {
     @RequestMapping(value = "/saveUTF8", method = RequestMethod.POST)
     public String saveUTF8(@ModelAttribute("UTF8") UTF8 book) {
         UTF8 utf8 = new UTF8(book.getBookName(),book.getFilePath());
+        utf8.setRating(book.getRating());
         bookDAO.addBook(utf8);
         return "redirect:/";
     }

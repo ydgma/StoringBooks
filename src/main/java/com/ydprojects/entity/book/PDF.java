@@ -51,7 +51,7 @@ public class PDF extends BookImpl {
             stripper.setSortByPosition(true);
             PDFTextStripper tStripper = new PDFTextStripper();
             return tStripper.getText(PDFDocument);
-        } catch (IOException e) {
+        } catch (IOException| NullPointerException e) {
             LOG.info("{}",e);
         }
         return "failed to convert the pdf to string";
