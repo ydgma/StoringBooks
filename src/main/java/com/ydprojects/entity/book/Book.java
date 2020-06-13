@@ -10,5 +10,6 @@ public interface Book extends Serializable {
     Long getId();
     byte[] getBook();
     int getRating();
+    String getReview();
     Date getDate();
 }

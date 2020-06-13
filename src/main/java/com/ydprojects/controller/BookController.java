@@ -43,6 +43,7 @@ public class BookController {
     public String savePDF(@ModelAttribute("PDF") PDF book) {
         PDF pdf = new PDF(book.getBookName(),book.getFilePath());
         pdf.setRating(book.getRating());
+        pdf.setReview(book.getReview());
         bookDAO.addBook(pdf);
         return "redirect:/";
     }
@@ -51,6 +52,7 @@ public class BookController {
     public String saveUTF8(@ModelAttribute("UTF8") UTF8 book) {
         UTF8 utf8 = new UTF8(book.getBookName(),book.getFilePath());
         utf8.setRating(book.getRating());
+        utf8.setReview(book.getReview());
         bookDAO.addBook(utf8);
         return "redirect:/";
     }

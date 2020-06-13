@@ -36,6 +36,9 @@ public class BookImpl implements Book {
     @Column(name = "bookRating", nullable = false)
     private int rating;
 
+    @Column(name = "bookReview", nullable = false)
+    private String review;
+
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "dateAdded", nullable = false)
@@ -90,6 +93,10 @@ public class BookImpl implements Book {
         this.dateAdded = dateAdded;
     }
 
+    public void setReview(String review) {
+        this.review = review;
+    }
+
     @Override
     public byte[] getBook() {
         return bookAsFile;
@@ -98,6 +105,11 @@ public class BookImpl implements Book {
     @Override
     public int getRating() {
         return rating;
+    }
+
+    @Override
+    public String getReview() {
+        return review;
     }
 
     @Override
