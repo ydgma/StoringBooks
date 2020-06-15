@@ -4,7 +4,7 @@ Simple project to test and learn more about storing data using hibernate and spr
 
  MySQL create table script:  <br />
 
-CREATE TABLE `book` (
+``` CREATE TABLE `book` (
   `bookType` varchar(10) DEFAULT NULL,
   `wordCount` int DEFAULT NULL,
   `bookID` int NOT NULL AUTO_INCREMENT,
@@ -14,7 +14,7 @@ CREATE TABLE `book` (
   `dateAdded` date DEFAULT NULL,
   `bookReview` varchar(4000) DEFAULT NULL,
   PRIMARY KEY (`bookID`)
-)
+) ```
 
 Ensure there is a project.properties file under src/main with the following properties: <br />
 db.user= <br />
