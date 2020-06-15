@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -23,7 +24,8 @@ public class BookController {
     public ModelAndView home() {
         ModelAndView mav = new ModelAndView("Index");
         //test method
-        //mav.addObject("message","work in progress");
+        List<BookImpl> listOfBooks = bookDAO.retrieveAllBooks();
+        mav.addObject("listOfBooks",listOfBooks);
         return mav;
     }
 

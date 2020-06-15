@@ -106,4 +106,10 @@ public class BookImplDAOTest {
         bookDAO.updateBook(unitTestBook8);
         bookDAO.deleteBook(unitTestBook8.getId(),UTF8.class);
     }
+
+    @Test
+    public void retrieveFullListOfPDFs(){
+        List<PDF> listofPdfs = bookDAO.retrieveAllBooks();
+        assertNotNull(listofPdfs);
+    }
 }

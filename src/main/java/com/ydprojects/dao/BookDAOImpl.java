@@ -113,6 +113,13 @@ public class BookDAOImpl <T extends BookImpl> implements BookDAO{
         }
     }
 
+    @Override
+    public List retrieveAllBooks() {
+        Session session = sessionFactory.openSession();
+        return session.createCriteria(PDF.class).list();
+    }
+
+
     private List<T> extractBooksOfTypeFromList(List<T> books, BookType bookType) {
         return books
                 .stream()
