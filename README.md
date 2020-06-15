@@ -4,13 +4,17 @@ Simple project to test and learn more about storing data using hibernate and spr
 
  MySQL create table script:  <br />
 
-CREATE TABLE `book` ( <br />
-  `bookType` varchar(10) DEFAULT NULL, <br />
-  `wordCount` int DEFAULT NULL, <br />
-  `bookID` int NOT NULL AUTO_INCREMENT, <br />
-  `bookAsFile` mediumblob, <br />
-  `bookName` varchar(40) DEFAULT NULL, <br />
-  PRIMARY KEY (`bookID`)) <br />
+CREATE TABLE `book` (
+  `bookType` varchar(10) DEFAULT NULL,
+  `wordCount` int DEFAULT NULL,
+  `bookID` int NOT NULL AUTO_INCREMENT,
+  `bookAsFile` mediumblob,
+  `bookName` varchar(40) DEFAULT NULL,
+  `bookRating` int DEFAULT NULL,
+  `dateAdded` date DEFAULT NULL,
+  `bookReview` varchar(4000) DEFAULT NULL,
+  PRIMARY KEY (`bookID`)
+)
 
 Ensure there is a project.properties file under src/main with the following properties: <br />
 db.user= <br />
@@ -24,4 +28,4 @@ TODO:
 * Use a seperate database when testing DAO.
 * Create a teardown to clear test data created. 
 * Add css to view pages
-* Add a rating and date finished columns
+* implement functionality to view/edit and delete books
