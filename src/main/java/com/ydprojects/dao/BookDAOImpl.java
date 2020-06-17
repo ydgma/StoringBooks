@@ -49,9 +49,6 @@ public class BookDAOImpl <T extends BookImpl> implements BookDAO{
     public  T getBook(Long bookId, Class clazz ) {
         Session session = sessionFactory.openSession();
         T book = (T) session.get(clazz, bookId);
-        if(!book.getBookType().toString().equalsIgnoreCase(clazz.getSimpleName())) {
-            throw new RuntimeException("please retrieve a valid book with a type of " + clazz.getSimpleName());
-        }
         return book;
     }
 

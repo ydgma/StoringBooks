@@ -12,16 +12,17 @@
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
+  padding: 5px;
 }
 </style>
 </head>
 <body>
 <div align="center">
     <h2>Home</h2>
-    <h3><a href="savePDF"><button>Save a PDF file</button></a></h3>
-    <h3><a href="saveUTF8"><button>Save a Text file</button></a></h3>
+    <h3><a href="savePDF"><button>Save Book (PDF)</button></a></h3>
+    <h3><a href="saveUTF8"><button>Save Book (TEXT)</button></a></h3>
 </div>
-<h1 align="center"> List of current books </h1>
+<h1 align="center"> Book List </h1>
 <div align="center">
     <table>
         <tr>
@@ -29,6 +30,7 @@ table, th, td {
             <th>Book Name</th>
             <th>Book Rating</th>
             <th>Book Review</th>
+            <th>Delete book</th>
         </tr>
         <c:forEach items="${listOfBooks}" var="book">
         <tr>
@@ -36,6 +38,9 @@ table, th, td {
             <td>${book.bookName}</td>
             <td>${book.rating}</td>
             <td>${book.review}</td>
+            <td>
+                <a href="delete?id=${book.id}">delete</a>
+            </td>
          </tr>
          </c:forEach>
     </table>
