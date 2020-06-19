@@ -9,8 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -23,7 +25,8 @@ public class BookController {
     public ModelAndView home() {
         ModelAndView mav = new ModelAndView("Index");
         //test method
-        //mav.addObject("message","work in progress");
+        List<BookImpl> listOfBooks = bookDAO.retrieveAllBooks();
+        mav.addObject("listOfBooks",listOfBooks);
         return mav;
     }
 
@@ -42,6 +45,8 @@ public class BookController {
     @RequestMapping(value = "/savePDF", method = RequestMethod.POST)
     public String savePDF(@ModelAttribute("PDF") PDF book) {
         PDF pdf = new PDF(book.getBookName(),book.getFilePath());
+        pdf.setRating(book.getRating());
+        pdf.setReview(book.getReview());
         bookDAO.addBook(pdf);
         return "redirect:/";
     }
@@ -49,7 +54,16 @@ public class BookController {
     @RequestMapping(value = "/saveUTF8", method = RequestMethod.POST)
     public String saveUTF8(@ModelAttribute("UTF8") UTF8 book) {
         UTF8 utf8 = new UTF8(book.getBookName(),book.getFilePath());
+        utf8.setRating(book.getRating());
+        utf8.setReview(book.getReview());
         bookDAO.addBook(utf8);
         return "redirect:/";
     }
+
+    @RequestMapping("/delete")
+    public String deleteBook(@RequestParam long id ){
+        bookDAO.deleteBook(id,UTF8.class);
+        return "redirect:/";
+    }
+
 }

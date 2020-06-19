@@ -1,8 +1,10 @@
 package com.ydprojects.entity.book;
 
 import com.ydprojects.util.BookConverterUtil;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @MappedSuperclass
 public class BookImpl implements Book {
@@ -30,6 +32,17 @@ public class BookImpl implements Book {
 
     @Column(name = "bookName", nullable = false)
     private String bookName;
+
+    @Column(name = "bookRating", nullable = false)
+    private int rating;
+
+    @Column(name = "bookReview", nullable = false)
+    private String review;
+
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "dateAdded", nullable = false)
+    private Date dateAdded;
 
     @Transient
     private String filePath;
@@ -72,12 +85,38 @@ public class BookImpl implements Book {
         return filePath;
     }
 
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public void setDateAdded(Date dateAdded) {
+        this.dateAdded = dateAdded;
+    }
+
+    public void setReview(String review) {
+        this.review = review;
+    }
+
     @Override
     public byte[] getBook() {
         return bookAsFile;
     }
 
     @Override
+    public int getRating() {
+        return rating;
+    }
+
+    @Override
+    public String getReview() {
+        return review;
+    }
+
+    @Override
+    public Date getDate() {
+        return dateAdded;
+    }
+
     public String getBookContentsAsString() {
         return bookContentsAsString;
     }
@@ -101,4 +140,5 @@ public class BookImpl implements Book {
     public String getBookName() {
         return bookName;
     }
+
 }
