@@ -28,4 +28,4 @@ TODO:
 * Use a seperate database when testing DAO.
 * Create a teardown to clear test data created. 
 * Add css to view pages
-* implement functionality to view/edit and delete books
+* implement functionality to edit books
