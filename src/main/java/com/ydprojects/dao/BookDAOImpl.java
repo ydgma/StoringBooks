@@ -39,7 +39,7 @@ public class BookDAOImpl <T extends BookImpl> implements BookDAO{
             if (transaction != null) {
                 transaction.rollback();
             }
-            LOG.trace("{}",e);
+            LOG.info("{}",e);
 
         }
         return false;

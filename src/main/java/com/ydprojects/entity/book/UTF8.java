@@ -25,21 +25,12 @@ public class UTF8 extends BookImpl {
         super();
     }
 
-    public UTF8(String filePath, String bookContentsAsString, int wordCount, byte[] bookAsByteArray, String bookName) {
-        setFilePath(filePath);
-        setBookContentsAsString(bookContentsAsString);
-        setWordCount(wordCount);
-        setBook(bookAsByteArray);
-        setBookName(bookName);
-    }
-
     public UTF8(String bookName, String filePath) {
         setBookName(bookName);
         setFilePath(filePath);
         setBookType(BOOK_TYPE);
         setBookContentsAsString(convertBookToString());
         setWordCount(BookConverterUtil.wordCount(getBookContentsAsString()));
-        setBook(BookConverterUtil.convertFileToByteArray(getFilePath()));
     }
 
     public String convertBookToString () {

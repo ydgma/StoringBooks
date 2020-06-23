@@ -71,6 +71,7 @@ public class BookImpl implements Book {
 
     public void setFilePath(String filePath) {
         this.filePath = filePath;
+        this.setBook(BookConverterUtil.convertFileToByteArray(filePath));
     }
 
     public void setBook(byte[] bookAsByteArray) {

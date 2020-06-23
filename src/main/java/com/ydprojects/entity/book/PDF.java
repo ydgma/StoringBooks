@@ -27,21 +27,12 @@ public class PDF extends BookImpl {
         super();
     }
 
-    public PDF(String filePath, String bookContentsAsString, int wordCount, byte[] bookAsByteArray, String bookName) {
-       setFilePath(filePath);
-       setBookContentsAsString(bookContentsAsString);
-       setWordCount(wordCount);
-       setBook(bookAsByteArray);
-       setBookName(bookName);
-    }
-
     public PDF(String bookName, String filePath) {
         setBookName(bookName);
         setFilePath(filePath);
         setBookType(BOOK_TYPE);
         setBookContentsAsString(convertBookToString());
         setWordCount(BookConverterUtil.wordCount(getBookContentsAsString()));
-        setBook(BookConverterUtil.convertFileToByteArray(getFilePath()));
     }
 
     public String convertBookToString() {

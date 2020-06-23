@@ -30,6 +30,10 @@
                  <td><form:input path="filePath" /></td>
             </tr>
             <tr>
+                 <td>Book Type:</td>
+                  <td><form:input path="bookType" value="UTF8" readonly="true"/></td>
+             </tr>
+            <tr>
                 <td colspan="2"><input type="submit" value="Save" /></td>
             </tr>
         </table>
